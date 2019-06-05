@@ -1,12 +1,12 @@
 //implement changes to the schema
 exports.up = function(knex, Promise) {
-  return knex.scheme.createTable('cohorts', tbl => {
+  return knex.scheme.createTable('cohorts', table => {
       //each table needs a primary key
       //we'll call it id, integer, auto-increment
-      tbl.increments();
+      table.increments();
 
-      tbl
-        .string('name, 123')
+      table
+        .string('name, 128')
         .notNullable()
         .unique();
 
