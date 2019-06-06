@@ -1,16 +1,14 @@
 //implement changes to the schema
 exports.up = function(knex, Promise) {
-  return knex.scheme.createTable('cohorts', table => {
+  return knex.schema.createTable('cohorts', table => {
       //each table needs a primary key
       //we'll call it id, integer, auto-increment
       table.increments();
 
       table
-        .string('name, 128')
+        .string('name', 128)
         .notNullable()
         .unique();
-
-      tbl.timestamps(true, true); //created_at and updated_at
   })
 };
     //undo the changes

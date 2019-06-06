@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.delete("/", (req, res) => {
+router.delete("/", async (req, res) => {
     const { id } = req.params;
     try {
         const cohort = await db("cohorts")
