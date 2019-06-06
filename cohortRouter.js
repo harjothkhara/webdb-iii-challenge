@@ -36,6 +36,22 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+router.get("/:id/students", async (req, res) => {
+    const { id } = req.params;
+    try {
+      const students = await db("students").where({ cohort_id: id });
+      if (students.length >= 1) {
+        res.status(200).json(students);
+      } else {
+        res
+          .status(404)
+          .json({ message: "Cohort with specified ID either does not exist or has no students." });
+      }
+    } catch (error) {
+      res.status(500).json({ message: `Cohort request failed ${error}.` });
+    }
+  });
+
 router.post("/", async (req, res) => {
     const cohort = req.body;
     if (!cohort.name) {
@@ -55,7 +71,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     const { id } = req.params;
     try {
         const cohort = await db("cohorts")
